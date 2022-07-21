@@ -2,9 +2,13 @@ package hiber.dao;
 
 import hiber.model.Car;
 
+import java.util.List;
+
 public interface CarDao {
 
-    public Car findOne(Long id);
+    Car findOne(Long id);
 
-    public
+    List<Car> getAll();
+
+    void save(Car car);
 }
