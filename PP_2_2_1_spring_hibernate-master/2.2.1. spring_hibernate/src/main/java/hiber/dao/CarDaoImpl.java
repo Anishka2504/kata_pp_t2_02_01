@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -15,16 +16,17 @@ public class CarDaoImpl implements CarDao{
 
     @Override
     public Car findOne(Long id) {
-        return null;
+        return sessionFactory.getCurrentSession().get(Car.class, id);
     }
 
     @Override
     public List<Car> getAll() {
-        return null;
+        TypedQuery<Car> query = sessionFactory.getCurrentSession().createQuery("FROM Car");
+        return query.getResultList();
     }
 
     @Override
     public void save(Car car) {
-
+        sessionFactory.getCurrentSession().save(car);
     }
 }
